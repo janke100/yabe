@@ -30,7 +30,7 @@
 
     #{ifErrors}
         <p class="error">
-            All fields are required!
+            ${errors[0]}
         </p>
     #{/ifErrors}
 
@@ -43,6 +43,13 @@
         <textarea name="content" id="content">${params.content}</textarea>
     </p>
     <p>
+    	<label for="code">Please type the code below: </label>
+    	<img src="@{Application.captcha(randomID)}" />
+    	<br />
+    	<input type="text" name="code" id="code" size="18" value="" />
+    	<input type="hidden" name="randomID" value="${randomID}" />
+	</p>
+    <p>
         <input type="submit" value="Submit your comment" />
     </p>
     
@@ -51,10 +58,13 @@
        		// Expose the form 
        		$('form').click(function() { 
        			$('form').expose({api: true}).load(); 
-      		}); 
+      		});
         
       	 	// If there is an error, focus to form
       	  	if($('form .error').size()) {
+      	  		$('html,body').animate({
+					scrollTop: $('form').offset().top
+				},2000);
       		   	$('form').expose({api: true, loadSpeed: 0}).load(); 
       		   	$('form input[type=text]').get(0).focus();
       		}
