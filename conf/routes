@@ -6,12 +6,15 @@
 GET     /                                       Application.index
 
 # Post page
-GET     /posts/{id}                             Application.show
+GET     /posts/{<[0-9]+>id}                     Application.show
+
+# Tagged posts page
+GET     /posts/{tag}                    		Application.listTagged
 
 # Add a comment
 POST    /posts/{postId}/comments                Application.postComment
 
-# Captcha
+# Get Captcha
 GET     /captcha                                Application.captcha
 
 # Ignore favicon requests
