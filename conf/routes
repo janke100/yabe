@@ -17,6 +17,9 @@ POST    /posts/{postId}/comments                Application.postComment
 # Get Captcha
 GET     /captcha                                Application.captcha
 
+# Import CRUD routes
+*      /admin              						module:crud
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

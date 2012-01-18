@@ -4,17 +4,24 @@ import java.util.*;
 import javax.persistence.*;
  
 import play.db.jpa.*;
+import play.data.validation.*;
  
 @Entity
 public class Post extends Model {
 
+    @Required
     public String title;
+    
+    @Required
     public Date postedAt;
     
     @Lob
+    @Required
+    @MaxSize(10000)
     public String content;
     
     @ManyToOne
+    @Required
     public User author;
     
     @OneToMany(mappedBy="post", cascade=CascadeType.ALL)
@@ -30,6 +37,10 @@ public class Post extends Model {
         this.postedAt = new Date();
         this.comments = new ArrayList<Comment>();
         this.tags = new TreeSet<Tag>();
+    }
+    
+    public String toString() {
+        return title;
     }
     
     public Post addComment(String author, String content) {
