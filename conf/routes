@@ -19,6 +19,19 @@ GET     /captcha                                Application.captcha
 
 # Administration
 GET     /admin/?                                Admin.index
+
+# Edit my post
+GET     /admin/myPosts/{id}                 	Admin.form
+
+# Write new post page
+GET     /admin/new                          	Admin.form
+
+# Save edited post
+POST    /admin/myPosts/{id}                 	Admin.save
+
+# Save new post
+POST    /admin/new                          	Admin.save
+
 # Import CRUD routes
 *      /admin              						module:crud
 
